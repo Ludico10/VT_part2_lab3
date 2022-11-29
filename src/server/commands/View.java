@@ -6,7 +6,6 @@ import server.model.Role;
 public class View implements Command {
     @Override
     public String execute(String args) {
-        AuthenticationImpl authenticationImpl = new AuthenticationImpl();
         if (authenticationImpl.getRole() != Role.NBD) {
 
             var result = new StringBuilder();

@@ -4,6 +4,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import server.service.ServiceFactory;
 import server.service.impl.InfoServiceImpl;
 import server.model.StudentInfo;
 import server.dao.StudentInfoDAO;
@@ -43,7 +44,7 @@ public class StudentInfoDAOImpl implements StudentInfoDAO {
             for (int i = 0; i < nodes.getLength(); i++) {
                 Node node = nodes.item(i);
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
-                    var studentInfo = InfoServiceImpl.create(node.getChildNodes());
+                    var studentInfo = ServiceFactory.getInstance().getInfoService().create(node.getChildNodes());
                     studentInfos.put(studentInfo.getId(), studentInfo);
                 }
             }
@@ -87,9 +88,9 @@ public class StudentInfoDAOImpl implements StudentInfoDAO {
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
             Document document = documentBuilder.newDocument();
             Element rootFile = document.createElement("cases");
-            for (var studentCase : getAll()) {
-                Element caseElement = InfoServiceImpl.createNode(document, studentCase);
-                rootFile.appendChild(caseElement);
+            for (var studentInfo : getAll()) {
+                Element infoElement = ServiceFactory.getInstance().getInfoService().createNode(document, studentInfo);
+                rootFile.appendChild(infoElement);
             }
             document.appendChild(rootFile);
 
