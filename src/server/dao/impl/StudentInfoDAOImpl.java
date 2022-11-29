@@ -4,6 +4,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import server.service.impl.InfoServiceImpl;
 import server.model.StudentInfo;
 import server.dao.StudentInfoDAO;
 
@@ -30,7 +31,7 @@ public class StudentInfoDAOImpl implements StudentInfoDAO {
     private final ReadWriteLock readWriteLock;
     private final Map<Integer, StudentInfo> studentInfos;
 
-    private StudentCaseDAOImpl() {
+    private StudentInfoDAOImpl() {
         readWriteLock = new ReentrantReadWriteLock();
         studentInfos = new HashMap<Integer, StudentInfo>();
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -42,7 +43,7 @@ public class StudentInfoDAOImpl implements StudentInfoDAO {
             for (int i = 0; i < nodes.getLength(); i++) {
                 Node node = nodes.item(i);
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
-                    var studentInfo = ServiceFactory.getInstance().getCaseService().createCase(node.getChildNodes());
+                    var studentInfo = InfoServiceImpl.create(node.getChildNodes());
                     studentInfos.put(studentInfo.getId(), studentInfo);
                 }
             }
@@ -87,7 +88,7 @@ public class StudentInfoDAOImpl implements StudentInfoDAO {
             Document document = documentBuilder.newDocument();
             Element rootFile = document.createElement("cases");
             for (var studentCase : getAll()) {
-                Element caseElement = ServiceFactory.getInstance().getCaseService().createNode(document, studentCase);
+                Element caseElement = InfoServiceImpl.createNode(document, studentCase);
                 rootFile.appendChild(caseElement);
             }
             document.appendChild(rootFile);

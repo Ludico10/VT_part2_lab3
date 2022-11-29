@@ -1,13 +1,15 @@
-package server;
+package server.service.impl;
 
 import server.model.Role;
+import server.service.Authentication;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Authentication {
+public class AuthenticationImpl implements Authentication {
     public Map<Object, Role> users = new HashMap<Object, Role>();
 
+    @Override
     public Role getRole(Object key) {
         Role res = Role.NBD;
         if (users.containsKey(key)) {
@@ -16,6 +18,7 @@ public class Authentication {
         return res;
     }
 
+    @Override
     public void addUser(Object key, Role role) {
         users.put(key, role);
     }

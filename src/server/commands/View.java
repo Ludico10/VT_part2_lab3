@@ -1,14 +1,13 @@
 package server.commands;
 
-import server.Authentication;
-import server.Command;
+import server.service.impl.AuthenticationImpl;
 import server.model.Role;
 
 public class View implements Command {
     @Override
     public String execute(String args) {
-        Authentication authentication = new Authentication();
-        if (authentication.getRole() != Role.NBD) {
+        AuthenticationImpl authenticationImpl = new AuthenticationImpl();
+        if (authenticationImpl.getRole() != Role.NBD) {
 
             var result = new StringBuilder();
             result.append("[\n");

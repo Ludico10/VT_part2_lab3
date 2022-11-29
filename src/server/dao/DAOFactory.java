@@ -5,7 +5,7 @@ import server.dao.impl.StudentInfoDAOImpl;
 public class DAOFactory {
     private static final DAOFactory instance = new DAOFactory();
 
-    private final StudentInfoDAOImpl studentCaseDAOImpl = StudentInfoDAOImpl.getInstance();
+    private final StudentInfoDAO studentInfoDAO = StudentInfoDAOImpl.getInstance();
 
     private DAOFactory() {}
 
@@ -13,7 +13,7 @@ public class DAOFactory {
         return instance;
     }
 
-    public StudentInfoDAOImpl getCaseDAO() {
-        return studentCaseDAOImpl;
+    public StudentInfoDAO getCaseDAO() {
+        return studentInfoDAO;
     }
 }

@@ -1,5 +1,6 @@
 package server;
 
+import server.commands.Command;
 import server.commands.View;
 
 public class ServerWorker {
