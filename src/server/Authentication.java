@@ -1,5 +1,7 @@
 package server;
 
+import server.model.Role;
+
 import java.util.HashMap;
 import java.util.Map;
 
