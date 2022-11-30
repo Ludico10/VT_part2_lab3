@@ -14,7 +14,7 @@ public class View implements Command {
         Role role = ServiceFactory.getInstance().getAuthenticationService().getRole(caller);
         if (role != Role.NBD) {
             List<StudentInfo> studentInfos = ServiceFactory.getInstance().getInfoService().getAll();
-            var result = new StringBuilder();
+            StringBuilder result = new StringBuilder();
             result.append("[\n");
             for (var studentInfo : studentInfos) {
                 result.append("\t").append(studentInfo.toString()).append("\n");

@@ -3,7 +3,7 @@ package server;
 import server.commands.*;
 
 public class ServerWorker {
-    private Server server;
+    private final Server server;
 
     public ServerWorker() {
         server = new Server();
@@ -21,6 +21,7 @@ public class ServerWorker {
                     connected = false;
                 }
                 Command command;
+                assert msg != null;
                 String[] args = msg.split(" ");
                 if (args.length >= 1) {
                      switch (args[0]) {
