@@ -1,43 +1,48 @@
 package server;
 
+import server.commands.*;
+
 import java.io.*;
-import java.net.ServerSocket;
 import java.net.Socket;
 
 public class  Server extends Thread {
-    private ServerSocket serverSocket;
-    private Socket clientSocket;
+    private final Socket clientSocket;
     private BufferedWriter writer;
     private BufferedReader reader;
 
-    public Server() {
-        try {
-            serverSocket = new ServerSocket(8888);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public Server(Socket clientSocket) {
+        this.clientSocket = clientSocket;
     }
 
-    public boolean connect() {
+    public void run() {
         try {
-            try {
-                clientSocket = serverSocket.accept();
-                writer = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
-                reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                String command = reader.readLine();
-                if (command.equals("CONNECT")) {
-                    System.out.println(command);
-                    writer.write("CONNECT" + System.lineSeparator());
-                    writer.flush();
-                    return true;
-                } else
-                    return false;
-            } catch (Exception e) {
-                close();
-                return false;
+            writer = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
+            reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            sendMsg("Choose command" + System.lineSeparator());
+            boolean connected = true;
+            while (connected) {
+                String msg = getMsg();
+                if (msg == null || msg.equals("STOP")) {
+                    connected = false;
+                } else {
+                    Command command;
+                    String[] args = msg.split(" ");
+                    if (args.length >= 1) {
+                        switch (args[0]) {
+                            case "AUTH" -> command = new Authenticate();
+                            case "CREATE" -> command = new Create();
+                            case "VIEW" -> command = new View();
+                            case "EDIT" -> command = new Edit();
+                            default -> throw new IllegalArgumentException("Unexpected value: " + args[0]);
+                        }
+                        msg = command.execute(this, msg);
+                        sendMsg(msg);
+                    }
+                }
             }
-        } catch (IOException ex) {
-            return false;
+            close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -51,7 +56,6 @@ public class  Server extends Thread {
     }
 
     public void close() throws IOException {
-        serverSocket.close();
         clientSocket.close();
         reader.close();
         writer.close();

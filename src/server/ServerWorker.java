@@ -1,41 +1,22 @@
 package server;
 
-import server.commands.*;
+import java.net.ServerSocket;
+import java.net.Socket;
 
-public class ServerWorker {
-    private final Server server;
+public class ServerWorker extends Thread {
 
-    public ServerWorker() {
-        server = new Server();
-    }
-
-    public void start() {
-        boolean connected = false;
-        while (!connected)
-            connected = server.connect();
+    public void run() {
         try {
-            server.sendMsg("Choose command" + System.lineSeparator());
-            while (connected) {
-                String msg = server.getMsg();
-                if (msg == null || msg.equals("STOP")) {
-                    connected = false;
-                }
-                Command command;
-                assert msg != null;
-                String[] args = msg.split(" ");
-                if (args.length >= 1) {
-                     switch (args[0]) {
-                        case "AUTH"	-> command = new Authenticate();
-                        case "CREATE" -> command = new Create();
-                        case "VIEW"	-> command = new View();
-                        case "EDIT" -> command = new Edit();
-                        default	-> throw new IllegalArgumentException("Unexpected value: " + args[0]);
-                    };
-                    msg = command.execute(this, msg);
-                    server.sendMsg(msg);
-                }
+            ServerSocket serverSocket = new ServerSocket(8888);
+            System.out.println("Server started");
+            while(true) {
+                try {
+                    Socket client = serverSocket.accept();
+                    System.out.println(client.toString() + "connected");
+                    Server server = new Server(client);
+                    server.start();
+                } catch (Exception ignore) {}
             }
-            server.close();
         } catch (Exception e) {
             e.getStackTrace();
         }
