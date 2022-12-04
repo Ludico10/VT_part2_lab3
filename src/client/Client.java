@@ -1,6 +1,7 @@
 package client;
 
 import java.io.*;
+import java.net.InetAddress;
 import java.net.Socket;
 
 public class Client {
@@ -11,11 +12,12 @@ public class Client {
     public Client() {
         try {
             try {
-                socket = new Socket("localhost", 8888);
+                socket = new Socket(InetAddress.getLocalHost(), 5555);
                 reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             } catch (Exception e) {
                 close();
+                e.printStackTrace();
             }
         }
         catch (IOException ex) {
@@ -23,10 +25,9 @@ public class Client {
         }
     }
 
-    public boolean connect() {
+    public boolean sendMsg(String command) {
         try {
-            String word = "CONNECT" + System.lineSeparator();
-            writer.write(word);
+            writer.write(command + System.lineSeparator());
             writer.flush();
             return true;
         } catch (IOException e){
@@ -34,18 +35,13 @@ public class Client {
         }
     }
 
-    public void sendMsg(String command) throws IOException {
-        writer.write(command + System.lineSeparator());
-        writer.flush();
-    }
-
     public String getMsg() throws IOException {
             return reader.readLine();
     }
 
     public void close() throws IOException {
-        socket.close();
-        reader.close();
-        writer.close();
+        if (socket != null) socket.close();
+        if (reader != null) reader.close();
+        if (writer != null) writer.close();
     }
 }

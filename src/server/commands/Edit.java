@@ -8,7 +8,7 @@ public class Edit implements Command{
     @Override
     public String execute(Object caller, String args) {
         String[] arguments = args.split(" ");
-        if (arguments.length == 4) {
+        if (arguments.length == 3) {
             return "Unable to execute command EDIT with such params";
         }
 
@@ -25,7 +25,7 @@ public class Edit implements Command{
         if (!ServiceFactory.getInstance().getInfoService().contains(id)) {
             return "Student information not found";
         }
-        ServiceFactory.getInstance().getInfoService().edit(id, arguments[1], arguments[2]);
+        ServiceFactory.getInstance().getInfoService().edit(id, arguments[2], arguments[3]);
         return "Complete";
     }
 }

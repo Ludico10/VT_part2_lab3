@@ -41,6 +41,7 @@ public class  Server extends Thread {
                 }
             }
             close();
+            System.out.println("connection stopped");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -56,8 +57,8 @@ public class  Server extends Thread {
     }
 
     public void close() throws IOException {
-        clientSocket.close();
-        reader.close();
-        writer.close();
+        if (clientSocket != null) clientSocket.close();
+        if (reader != null) reader.close();
+        if (writer != null) writer.close();
     }
 }

@@ -7,7 +7,7 @@ public class ServerWorker extends Thread {
 
     public void run() {
         try {
-            ServerSocket serverSocket = new ServerSocket(8888);
+            ServerSocket serverSocket = new ServerSocket(5555);
             System.out.println("Server started");
             while(true) {
                 try {

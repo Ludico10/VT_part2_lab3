@@ -14,18 +14,18 @@ public class ClientWorker extends Thread {
     }
 
     public void run() {
-        boolean connected = client.connect();
+        boolean connected;
         try {
             ClientListener listener = new ClientListener(client);
             listener.start();
-            while (connected && !info.equals("STOP")) {
+            do {
                 info = inputScanner.nextLine();
-                info = info.replaceAll("\\s+", "_");
                 System.out.println(info);
-                client.sendMsg(info);
-            }
+                connected = client.sendMsg(info);
+            } while (connected && !info.equals("STOP"));
             listener.stopListen();
             client.close();
+            System.out.println("client close");
         } catch (IOException e) {
             e.printStackTrace();
         }

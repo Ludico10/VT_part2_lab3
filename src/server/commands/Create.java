@@ -12,7 +12,7 @@ public class Create implements Command{
         }
 
         if (ServiceFactory.getInstance().getAuthenticationService().getRole(caller) != Role.ADMIN) {
-            return "You should have manager rights to execute this command";
+            return "You should have admin rights to execute this command";
         }
 
         ServiceFactory.getInstance().getInfoService().add(arguments[1], arguments[2]);

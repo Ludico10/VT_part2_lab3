@@ -15,7 +15,7 @@ public class ClientListener extends Thread{
                 System.out.println(msg);
             }
             catch (Exception e) {
-                System.out.println("Sending error");
+                System.out.println("Getting message error");
             }
         }
     }

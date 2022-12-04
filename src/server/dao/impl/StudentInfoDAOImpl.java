@@ -27,7 +27,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class StudentInfoDAOImpl implements StudentInfoDAO {
     private static final StudentInfoDAOImpl instance = new StudentInfoDAOImpl();
-    private static final String path = ".\\src\\main\\resources\\cases.xml";
+    private static final String path = ".\\src\\resources\\StudentBase.xml";
 
     private final ReadWriteLock readWriteLock;
     private final Map<Integer, StudentInfo> studentInfos;

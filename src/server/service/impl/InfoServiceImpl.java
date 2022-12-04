@@ -27,7 +27,7 @@ public class InfoServiceImpl implements InfoService {
                     case "name" -> name = text;
                     case "surname" -> surname = text;
                     case "case"	-> {}
-                    default -> throw new IllegalArgumentException("No case");
+                    default -> {} //throw new IllegalArgumentException("No info");
                 }
             }
         }

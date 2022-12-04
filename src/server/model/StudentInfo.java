@@ -53,10 +53,10 @@ public class StudentInfo {
     }
 
     public String toString() {
-        return "Student Case: {"+
+        return "Student Info: {"+
                 "\nId = " + id +
-                "\nFirstName = " + name +
-                "\nLastName = " + name +
+                "\nName = " + name +
+                "\nSurname = " + surname +
                 "\n}";
     }
 }

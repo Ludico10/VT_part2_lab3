@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<cases>
+    <case>
+        <id>1</id>
+        <name>First</name>
+        <surname>One</surname>
+    </case>
+    <case>
+        <id>2</id>
+        <name>Second</name>
+        <surname>One</surname>
+    </case>
+    <case>
+        <id>3</id>
+        <name>Third</name>
+        <surname>One</surname>
+    </case>
+    <case>
+        <id>4</id>
+        <name>Obi</name>
+        <surname>One</surname>
+    </case>
+    <case>
+        <id>6</id>
+        <name>Another</name>
+        <surname>One</surname>
+    </case>
+    <case>
+        <id>7</id>
+        <name>7</name>
+        <surname>C</surname>
+    </case>
+</cases>
