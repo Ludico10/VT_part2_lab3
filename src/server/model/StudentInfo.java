@@ -19,7 +19,7 @@ public class StudentInfo {
 
     public void setId(int id) {
         this.id = id;
-    };
+    }
 
     public String getName() {
         return name;
@@ -44,8 +44,8 @@ public class StudentInfo {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        StudentInfo studentCase = (StudentInfo) o;
-        return id == studentCase.id && name.equals(studentCase.name) && surname.equals(studentCase.surname);
+        StudentInfo studentInfo = (StudentInfo) o;
+        return id == studentInfo.id && name.equals(studentInfo.name) && surname.equals(studentInfo.surname);
     }
 
     public int hashCode() {

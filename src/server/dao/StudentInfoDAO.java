@@ -5,9 +5,9 @@ import server.model.StudentInfo;
 import java.util.List;
 
 public interface StudentInfoDAO {
-    public boolean contains(int key);
-    public List<StudentInfo> getAll();
-    public void add(StudentInfo studentInfo);
-    public void setById(int id, StudentInfo studentCase);
-    public void update();
+    boolean contains(int key);
+    List<StudentInfo> getAll();
+    void add(StudentInfo studentInfo);
+    void setById(int id, StudentInfo studentCase);
+    void update();
 }

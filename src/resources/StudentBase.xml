@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <cases>
-    <case>
+    <info>
         <id>1</id>
-        <name>First</name>
-        <surname>One</surname>
-    </case>
-    <case>
+        <name>Stu</name>
+        <surname>Dent</surname>
+    </info>
+    <info>
         <id>2</id>
-        <name>Second</name>
-        <surname>One</surname>
-    </case>
-    <case>
+        <name>Wednesday</name>
+        <surname>Addams</surname>
+    </info>
+    <info>
         <id>3</id>
-        <name>Third</name>
-        <surname>One</surname>
-    </case>
-    <case>
+        <name>Hodilki</name>
+        <surname>Brodilki</surname>
+    </info>
+    <info>
         <id>4</id>
-        <name>Obi</name>
-        <surname>One</surname>
-    </case>
-    <case>
+        <name>Somebody</name>
+        <surname>Once</surname>
+    </info>
+    <info>
         <id>6</id>
-        <name>Another</name>
-        <surname>One</surname>
-    </case>
-    <case>
+        <name>Told</name>
+        <surname>Me</surname>
+    </info>
+    <info>
         <id>7</id>
-        <name>7</name>
-        <surname>C</surname>
-    </case>
+        <name>A</name>
+        <surname>B</surname>
+    </info>
+    <info>
+        <id>8</id>
+        <name>Tester</name>
+        <surname>Testerovich</surname>
+    </info>
 </cases>

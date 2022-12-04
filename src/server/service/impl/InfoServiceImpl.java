@@ -11,7 +11,6 @@ import server.service.InfoService;
 import java.util.List;
 
 public class InfoServiceImpl implements InfoService {
-    private static final InfoServiceImpl instance = new InfoServiceImpl();
 
     @Override
     public StudentInfo create(NodeList nodes) {
@@ -26,8 +25,7 @@ public class InfoServiceImpl implements InfoService {
                     case "id" -> id = Integer.parseInt(text);
                     case "name" -> name = text;
                     case "surname" -> surname = text;
-                    case "case"	-> {}
-                    default -> {} //throw new IllegalArgumentException("No info");
+                    default -> {}
                 }
             }
         }
@@ -36,7 +34,7 @@ public class InfoServiceImpl implements InfoService {
 
     @Override
     public Element createNode(Document document, StudentInfo studentInfo) {
-        Element element = document.createElement("case");
+        Element element = document.createElement("info");
         Element id = document.createElement("id");
         Element name = document.createElement("name");
         Element surname = document.createElement("surname");

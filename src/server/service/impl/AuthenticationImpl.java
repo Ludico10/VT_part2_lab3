@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AuthenticationImpl implements Authentication {
-    public Map<Object, Role> users = new HashMap<Object, Role>();
+    public Map<Object, Role> users = new HashMap<>();
 
     @Override
     public Role getRole(Object key) {
