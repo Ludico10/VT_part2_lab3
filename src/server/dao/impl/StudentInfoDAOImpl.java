@@ -4,10 +4,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import server.service.ServiceFactory;
-import server.service.impl.InfoServiceImpl;
-import server.model.StudentInfo;
 import server.dao.StudentInfoDAO;
+import server.model.StudentInfo;
+import server.service.ServiceFactory;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -22,19 +21,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.locks.ReadWriteLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class StudentInfoDAOImpl implements StudentInfoDAO {
     private static final StudentInfoDAOImpl instance = new StudentInfoDAOImpl();
     private static final String path = ".\\src\\resources\\StudentBase.xml";
 
-    private final ReadWriteLock readWriteLock;
     private final Map<Integer, StudentInfo> studentInfos;
 
     private StudentInfoDAOImpl() {
-        readWriteLock = new ReentrantReadWriteLock();
-        studentInfos = new HashMap<Integer, StudentInfo>();
+        studentInfos = new HashMap<>();
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
